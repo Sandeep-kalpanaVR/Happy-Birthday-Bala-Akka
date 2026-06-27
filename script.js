@@ -11,6 +11,11 @@ const wishInput = document.getElementById("wishInput");
 const addWishBtn = document.getElementById("addWishBtn");
 const wishWall = document.getElementById("wishWall");
 
+const photos = document.querySelectorAll(".bala-photo");
+const photoModal = document.getElementById("photoModal");
+const modalPhoto = document.getElementById("modalPhoto");
+const closePhotoModal = document.getElementById("closePhotoModal");
+
 const message =
   "May your day be full of smiles, surprises, cake, gifts, and unforgettable happy moments. You deserve the best birthday ever! 🎂✨";
 
@@ -33,9 +38,11 @@ function createConfetti(amount = 120) {
     const confetti = document.createElement("div");
     confetti.className = "confetti";
     confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.backgroundColor =
+      colors[Math.floor(Math.random() * colors.length)];
     confetti.style.animationDuration = Math.random() * 2 + 2.5 + "s";
     confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "4px";
+
     document.body.appendChild(confetti);
 
     setTimeout(() => {
@@ -74,7 +81,7 @@ blowBtn.addEventListener("click", () => {
     flame.style.display = "none";
   });
 
-  candleMsg.textContent = "Wish made! May it come true, Bala Bhargavi 💖";
+  candleMsg.textContent = "Wish made! May it come true, Bala Akka 💖";
   createConfetti(160);
 });
 
@@ -102,6 +109,24 @@ function addWish() {
   wishInput.value = "";
   createConfetti(50);
 }
+
+photos.forEach((photo) => {
+  photo.addEventListener("click", () => {
+    modalPhoto.src = photo.src;
+    photoModal.classList.add("show");
+    createConfetti(60);
+  });
+});
+
+closePhotoModal.addEventListener("click", () => {
+  photoModal.classList.remove("show");
+});
+
+photoModal.addEventListener("click", (event) => {
+  if (event.target === photoModal) {
+    photoModal.classList.remove("show");
+  }
+});
 
 musicBtn.addEventListener("click", playBirthdayTones);
 
