@@ -268,6 +268,7 @@ body {
 }
 
 .memories,
+.photo-gallery,
 .wish-box {
   width: min(1100px, 92%);
   margin: 70px auto;
@@ -275,6 +276,7 @@ body {
 }
 
 .memories h2,
+.photo-gallery h2,
 .wish-box h2 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 25px;
@@ -301,6 +303,85 @@ body {
 .memory-card:hover {
   transform: rotate(-2deg) scale(1.05);
   background: rgba(255, 255, 255, 0.28);
+}
+
+.gallery-subtitle {
+  color: #fff7fb;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.photo-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.two-photos {
+  max-width: 760px;
+  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.bala-photo {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 28px;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: 0.35s ease;
+}
+
+.bala-photo:hover {
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 25px 60px rgba(255, 107, 203, 0.45);
+}
+
+.photo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 200;
+}
+
+.photo-modal.show {
+  display: flex;
+}
+
+.modal-photo {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 28px;
+  border: 4px solid white;
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.4);
+  animation: photoZoom 0.35s ease;
+}
+
+@keyframes photoZoom {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.photo-close {
+  position: fixed;
+  top: 25px;
+  right: 35px;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  z-index: 201;
 }
 
 .wish-input {
@@ -427,7 +508,8 @@ footer p {
 
 @media (max-width: 850px) {
   .card-section,
-  .memory-grid {
+  .memory-grid,
+  .two-photos {
     grid-template-columns: 1fr;
   }
 
@@ -443,5 +525,9 @@ footer p {
   .header {
     flex-direction: column;
     gap: 12px;
+  }
+
+  .bala-photo {
+    height: 330px;
   }
 }
